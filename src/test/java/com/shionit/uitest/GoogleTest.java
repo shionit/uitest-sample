@@ -1,11 +1,9 @@
 package com.shionit.uitest;
 
 import org.junit.Test;
-import org.openqa.selenium.By;
 
-import static com.codeborne.selenide.CollectionCondition.size;
 import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.open;
 
 /**
  * Created by @shionit on 2018/05/05.
@@ -14,11 +12,13 @@ public class GoogleTest {
 
     @Test
     public void userCanSearchKeywordWithGoogle() {
-        open("https://www.google.com/");
+        GoogleSearchPage searchPage = open("https://www.google.com/", GoogleSearchPage.class);
 
-        $(By.name("q")).setValue("selenide").pressEnter();
+        searchPage.setQ("selenide");
 
-        $$("#ires div.g").shouldHave(size(10));
-        $("#ires div.g", 2).shouldHave(text("Selenide: concise UI tests in Java"));
+        GoogleResultPage resultPage = searchPage.search();
+
+        resultPage.getResults().shouldHaveSize(10);
+        resultPage.getFirst().shouldHave(text("Selenide: concise UI tests in Java"));
     }
 }
