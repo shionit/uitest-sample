@@ -1,3 +1,6 @@
+/chromedriver
+/geckodriver
+
 ### Java
 # Compiled class file
 *.class
