@@ -1,4 +1,4 @@
-package com.shionit.uitest;
+package com.shionit.uitest.sample;
 
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;

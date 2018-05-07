@@ -1,4 +1,4 @@
-package com.shionit.uitest;
+package com.shionit.uitest.sample;
 
 import org.junit.Test;
 
@@ -14,7 +14,7 @@ public class GoogleTest {
     public void userCanSearchKeywordWithGoogle() {
         GoogleSearchPage searchPage = open("https://www.google.com/", GoogleSearchPage.class);
 
-        searchPage.setQ("selenide");
+        searchPage.q.val("selenide");
 
         GoogleResultPage resultPage = searchPage.search();
 

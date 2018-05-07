@@ -1,4 +1,4 @@
-package com.shionit.uitest;
+package com.shionit.uitest.sample;
 
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.support.FindBy;
@@ -10,16 +10,9 @@ import static com.codeborne.selenide.Selenide.page;
  */
 public class GoogleSearchPage {
 
+    /** 検索文字列 */
     @FindBy(name = "q")
-    private SelenideElement q;
-
-    /**
-     * 検索文字列を設定する。
-     * @param query 検索文字列
-     */
-    public void setQ(String query) {
-        q.setValue(query);
-    }
+    public SelenideElement q;
 
     /**
      * 検索を実行して結果ページを返す。
