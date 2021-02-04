@@ -1,8 +1,5 @@
 plugins {
     id 'java'
-    id 'checkstyle'
-    id 'findbugs'
-
     id 'idea'
 }
 
@@ -17,12 +14,12 @@ repositories {
 }
 
 dependencies {
-    testCompile 'com.codeborne:selenide:4.11.2'
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+    testCompile 'com.codeborne:selenide:5.18.0'
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.6.3'
 }
 
-task wrapper(type: Wrapper) {
-    gradleVersion = '4.7'
+wrapper {
+    gradleVersion = '6.8.1'
 }
 
 def f = file('setting.properties')
@@ -32,4 +29,8 @@ if (f.exists()) {
         p.load(it)
     }
     p.each { test.systemProperty it.key, it.value }
+}
+
+test {
+    useJUnitPlatform()
 }

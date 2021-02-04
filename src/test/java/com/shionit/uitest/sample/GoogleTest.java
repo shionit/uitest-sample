@@ -1,24 +1,20 @@
 package com.shionit.uitest.sample;
 
-import org.junit.Test;
 
+import org.junit.jupiter.api.Test;
+
+import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.open;
 
-/**
- * Created by @shionit on 2018/05/05.
- */
 public class GoogleTest {
-
     @Test
-    public void userCanSearchKeywordWithGoogle() {
-        GoogleSearchPage searchPage = open("https://www.google.com/", GoogleSearchPage.class);
+    public void userCanSearch() {
+        open("https://google.com/ncr");
+        new GooglePage().searchFor("selenide");
 
-        searchPage.q.val("selenide");
-
-        GoogleResultPage resultPage = searchPage.search();
-
-        resultPage.getResults().shouldHaveSize(10);
-        resultPage.getFirst().shouldHave(text("Selenide: concise UI tests in Java"));
+        SearchResultsPage results = new SearchResultsPage();
+        results.getResults().shouldHave(sizeGreaterThan(1));
+        results.getResult(0).shouldHave(text("Selenide: concise UI tests in Java"));
     }
 }
